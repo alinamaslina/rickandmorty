@@ -1,25 +1,32 @@
+import { NgForOf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpService } from '../../services/http.service';
+import {
+  Character,
+  CharacterResponse,
+  HttpService,
+} from '../../services/http.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-characters',
   imports: [],
   templateUrl: './characters.component.html',
   standalone: true,
-  styleUrl: './characters.component.scss'
+  styleUrl: './characters.component.scss',
 })
-export class CharactersComponent implements OnInit, OnDestroy { 
-  constructor(public http: HttpService) {} 
+export class CharactersComponent implements OnInit, OnDestroy {
+  characters: Character[] = [];
+  sub: Subscription | undefined;
+  constructor(public http: HttpService) {}
 
   ngOnInit(): void {
-    this.http.getAllCharacters().subscribe(
-      Response: Object => {
-        
-      }
-    )
+    this.sub = this.http
+      .getAllCharacters()
+      .subscribe((response: CharacterResponse) => {
+        this.characters = response.results;
+      });
   }
   ngOnDestroy(): void {
-    
+    this.sub?.unsubscribe();
   }
-
 }
