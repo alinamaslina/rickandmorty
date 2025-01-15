@@ -42,6 +42,6 @@ export class HttpService {
   constructor(public http: HttpClient) {}
 
   getAllCharacters(): any {
-    return this.http.get(this.API_URL);
+    return this.http.get<CharacterResponse>(this.API_URL);
   }
 }

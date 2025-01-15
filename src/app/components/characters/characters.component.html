@@ -11,17 +11,21 @@
           <h5 class="card-title">{{ character.name }}</h5>
           <p class="card-text">
             {{ character.status }} - {{ character.species }} <br />
-            Last known location:
-            <br /><a [href]="character.location.url"
-              >{{ character.location.name }}
-            </a>
-            <br />
-            First seen in:
-            <br /><a [href]="character.origin.url"
-              >{{ character.origin.name }}
+            Last known location: <br />
+            <a [href]="character.location.url">
+              {{ character.location.name }} </a
+            ><br />
+
+            First seen in: <br />
+            <a [href]="character.origin.url">
+              {{ character.origin.name }}
             </a>
           </p>
-          <a [href]="character.url" class="btn btn-primary">Go to profile</a>
+          <a
+            [routerLink]="['/characters', character.id]"
+            class="btn btn-primary"
+            >Go to profile</a
+          >
         </div>
       </div>
     </div>

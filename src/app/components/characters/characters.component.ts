@@ -1,3 +1,4 @@
+import { RouterLink } from '@angular/router';
 import { NgForOf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
@@ -9,7 +10,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-characters',
-  imports: [],
+  imports: [NgForOf, RouterLink],
   templateUrl: './characters.component.html',
   standalone: true,
   styleUrl: './characters.component.scss',
